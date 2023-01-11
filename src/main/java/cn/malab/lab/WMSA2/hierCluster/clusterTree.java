@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.ArrayList;
 
 import cn.malab.lab.WMSA2.strsCluster.CenCluster;
-import cn.malab.lab.WMSA2.strsCluster.CenCluster;
 import cn.malab.lab.WMSA2.strsCluster.FastCluster;
 import cn.malab.lab.WMSA2.measure.strsdist;
 
