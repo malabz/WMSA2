@@ -24,7 +24,7 @@ usage: java -jar WMSA2.jar [-m] mode [-i] path [-o] path
 ### Change Log
 ---
 
-- 11-01-2022, version 1.0
+- 11-01-2022, version 1.0.0
   
   inital version
   
