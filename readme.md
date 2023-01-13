@@ -46,7 +46,7 @@ java -jar WMSA2.jar -i test.fasta -o test_algined_WMSA2.fasta
 Use Win mode to align the data(the default similarity value is 0.9).
 
 ```bash
-java -jar WMSA2.jar -m Win -s 0.95 -i test.fasta -o test_a
+java -jar WMSA2.jar -m Win -s 0.95 -i test.fasta -o test_algined_WMSA2.fasta
 ```
 
 ### Download
