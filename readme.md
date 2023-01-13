@@ -60,7 +60,7 @@ java -jar WMSA2.jar -m Win -s 0.95 -i test.fasta -o test_a
 Download: ([more information](https://github.com/malabz/HAlign-3/tree/main/dataset#hierarchical-tree-simulated-datasets))
 
 - [sars_cov_2_like_diff_similarity.tar.xz](http://lab.malab.cn/~tfr/HAlign3_testdata/sars_cov_2_like_diff_similarity.tar.xz) 
-- [sars_cov_2_like_diff_treelength.tar.xz](http://lab.malab.cn/~tfr/HAlign3_testdata/sars_cov_2_like_diff_treelength.t ar.xz)  
+- [sars_cov_2_like_diff_treelength.tar.xz](http://lab.malab.cn/~tfr/HAlign3_testdata/sars_cov_2_like_diff_treelength.tar.xz)  
 - [mt_like_diff_similarity.tar.xz](http://lab.malab.cn/~tfr/HAlign3_testdata/mt_like_diff_similarity.tar.xz)  
 - [mt_like_diff_treelength.tar.xz](http://lab.malab.cn/~tfr/HAlign3_testdata/mt_like_diff_treelength.tar.xz)
 
