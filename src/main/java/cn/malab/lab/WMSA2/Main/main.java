@@ -69,7 +69,7 @@ public class Main {
         // 比对方式选择 -m
         // 输入文件位置 -i
         // 输出文件位置 -o
-        if (args.length == 0 || args.length > 6) {
+        if (args.length == 0 || args.length > 8) {
             args_help();
             System.exit(0);
         }
@@ -109,7 +109,7 @@ public class Main {
     }
 
     private static void args_help() {
-        System.out.println("\nusage: java -jar " + " [-m] mode [-i] path [-o] path");
+        System.out.println("\nusage: java -jar WMSA2.jar " + " [-m] mode [-s] sim [-i] path [-o] path");
         System.out.println();
         System.out.println("  necessary arguments: ");
         System.out.println("    -i  Input file path (nucleotide sequences in fasta format)");
