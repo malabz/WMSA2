@@ -117,8 +117,8 @@ public class Main {
         System.out.println();
         System.out.println("  optional arguments: ");
         System.out.println("    -m  three align option (default mode: Pro)");
-        System.out.println("         1. Pro   more accurate but slower");
-        System.out.println("         2. Win   less accurate but faster");        
+        System.out.println("         1. Pro   progressive alignment with StarTree method");
+        System.out.println("         2. Win   combine central and progressive alignment with CluStar method");        
         System.out.println("    -s  the similarity of the cluster (used in Win mode. default: 0.9)");
         System.out.println();
     }

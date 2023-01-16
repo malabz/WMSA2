@@ -12,7 +12,7 @@ Multiple sequence alignment is essential for various sequence analyses, includin
 #### For OSX/Linux/Windows
 
 1. Download and install JDK (version >= 11) for different systems from [here](https://www.oracle.com/java/technologies/downloads/#java11).
-2. Download WMSA2 from [relseases](https://github.com/malabz/WMSA2/releases).
+2. Download WMSA 2 from [relseases](https://github.com/malabz/WMSA2/releases).
 
 #### Usages
 
@@ -27,15 +27,15 @@ necessary arguments:
 
 optional arguments: 
     -m  three align option (default mode: Pro)
-        1. Pro   more accurate but slower
-        2. Win   less accurate but faster
+        1. Pro   progressive alignment with StarTree method
+        2. Win   combine central and progressive alignment with CluStar method
     -s  the similarity of the cluster (used in Win mode. default: 0.9)
 ```
 
 #### Example
 
-1. Download [data](http://lab.malab.cn/soft/WMSA2/index.html#load) and uncompress the data.
-2. Align the data with WMSA2.
+1. Download [data](https://github.com/malabz/WMSA2#data) and uncompress the data.
+2. Align the data with WMSA 2.
 
 Use Pro mode to align the data.
 
@@ -91,18 +91,12 @@ Download:
 - [SARS-CoV-2_1020.zip](http://lab.malab.cn/soft/WMSA2/data/SARS-CoV-2_1020.zip)
 - [SARS-CoV-2_1M.tar.xz](http://lab.malab.cn/~tfr/HAlign3_testdata/sars_cov_2_1Mseq.tar.xz) (more information see this [link](https://github.com/malabz/HAlign-3/tree/main/dataset#respiratory-syndrome-coronavirus-2-genomes))
 
-**more datasets **
-
-Download:
-
-- [site](http://lab.malab.cn/~cjt/MSA/datasets.html)
-
 #### Related Tools
 
 **Score scripts**
 
 - [SP score](https://github.com/malabz/MSATOOLS/tree/main/SPscore)
-- [Q score](https://www.drive5.com/qscore/) ([usage](http://lab.malab.cn/~cjt/MSA/measure.html))
+- [Q score](https://www.drive5.com/qscore/)
 
 **MSA tools**
 
@@ -116,14 +110,14 @@ Download:
 
 ### License
 
-> WMSA2 is a free software, License under [MIT](https://github.com/malabz/WMSA2/blob/main/LICENSE).
+> WMSA 2 is a free software, License under [MIT](https://github.com/malabz/WMSA2/blob/main/LICENSE).
 
 ### Citation
 
 If you use this software, please cite:
 
-WMSA2: A win-win multiple sequence alignment method combining central and progressive alignment strategies for the fast alignment of big data sets(under review).
+WMSA 2: A win-win multiple sequence alignment method combining central and progressive alignment strategies for the fast alignment of big data sets(under review).
 
 ### Contact us
 
-The software tools are developed and maintained by [MALAB](http://lab.malab.cn/~cjt/MSA). If you find any bug, welcome to contact us on the [issues page](https://github.com/malabz/WMSA2/issues). More tools and infomation can visit our [website](http://lab.malab.cn/~cjt/MSA) or [github](https://github.com/malabz).
+The software tools are developed and maintained by [ZOU's lab](http://lab.malab.cn/~zq/en/index.html). If you find any bug, welcome to contact us on the [issues page](https://github.com/malabz/WMSA2/issues). More tools and infomation can visit our [github](https://github.com/malabz).
