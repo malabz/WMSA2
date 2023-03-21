@@ -140,7 +140,7 @@ public class Main {
         System.out.println("         1. Pro        progressive alignment with StarTree method");
         System.out.println("         2. Win        combine central and progressive alignment with CluStar method");
         System.out.println("         3. StarTree   only output the guidetree");
-        System.out.println("    -t  tow method for guide tree (default: StarTree)");
+        System.out.println("    -t  tow guide tree option for MSA (default: StarTree)");
         System.out.println("         1. StarTree");
         System.out.println("         2. UPGMA");
         System.out.println("    -s  the similarity of the cluster (used in Win mode. default: 0.9)");

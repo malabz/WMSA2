@@ -25,11 +25,15 @@ necessary arguments:
     -i  Input file path (nucleotide sequences in fasta format)
     -o  Output file path
 
-optional arguments: 
-    -m  three align option (default mode: Pro)
-        1. Pro   progressive alignment with StarTree method
-        2. Win   combine central and progressive alignment with CluStar method
-    -s  the similarity of the cluster (used in Win mode. default: 0.9)
+optional arguments:
+  -m  align option (default mode: Pro)
+       1. Pro        progressive alignment with StarTree method
+       2. Win        combine central and progressive alignment with CluStar method
+       3. StarTree   only output the guidetree
+  -t  tow guide tree option for MSA (default: StarTree)
+       1. StarTree
+       2. UPGMA
+  -s  the similarity of the cluster (used in Win mode. default: 0.9)
 ```
 
 #### Example
