@@ -74,13 +74,13 @@ Download: ([more information](https://kim.bio.upenn.edu/software/csd.shtml)) ([a
    - [RNA-4095](http://lab.malab.cn/soft/WMSA2/data/RNA-4095.zip)
    - [RNA-8191](http://lab.malab.cn/soft/WMSA2/data/RNA-8191.zip)
 
-**AmtDB**
+**Ancient human partial mitochondrial DNA**
 
-> Ref: [AmtDB](https://amtdb.org/): a database of ancient human mitochondrial genomes.
+> Ref: Ancient DNA Reveals Key Stages in the Formation of Central European Mitochondrial Genetic Diversity. [DOI: 10.1126/science.1241844](https://www.science.org/doi/10.1126/science.1241844)
 
 Download: 
 
-- [amtdb.zip](http://lab.malab.cn/soft/WMSA2/data/amtdb.zip)
+- [mt.zip](http://lab.malab.cn/soft/WMSA2/data/mt.zip)
 
 **SARS-CoV-2 genome**
 
