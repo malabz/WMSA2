@@ -38,7 +38,7 @@ public class Kband extends kb {
     }
 
     private int Match(char a, char b) {
-        return (a == b || a == 'N' || b == 'N') ? this.ms : this.mis;
+        return (a == b || a == 'N' || b == 'N') ? AffinePenalty.ms : AffinePenalty.mis;
     }
 
     @Override
@@ -53,9 +53,9 @@ public class Kband extends kb {
         while (i > 0 || j > k) {
             if (channel == 1 && j > 0) {
                 channel = -1;
-                if (pm[1][i][j] == pm[1][i][j - 1] - e) {
+                if (pm[1][i][j] == pm[1][i][j - 1] - AffinePenalty.e) {
                     channel = 1;
-                } else if (i >= 1 && pm[1][i][j] == pm[0][i][j - 1] - d) {
+                } else if (i >= 1 && pm[1][i][j] == pm[0][i][j - 1] - AffinePenalty.d) {
                     channel = 0;
                 }
                 alignA.insert(0, "-");
@@ -77,9 +77,9 @@ public class Kband extends kb {
                 bj--;
             } else if (channel == 2 && i > 0 && (j + 1) <= (2 * k + diff)) {
                 channel = -1;
-                if (pm[2][i][j] == pm[2][i - 1][j + 1] - e) {
+                if (pm[2][i][j] == pm[2][i - 1][j + 1] - AffinePenalty.e) {
                     channel = 2;
-                } else if (i > 1 && pm[2][i][j] == pm[0][i - 1][j + 1] - d) {
+                } else if (i > 1 && pm[2][i][j] == pm[0][i - 1][j + 1] - AffinePenalty.d) {
                     channel = 0;
                 }
                 alignA.insert(0, A.charAt(i - 1));
@@ -136,12 +136,12 @@ public class Kband extends kb {
 
                         if (InsiderStrip(i, j + i - k - 1, k, diff)) {
                             // p[1] : B[j] ~ -
-                            pm[1][i][j] = Math.max(pm[0][i][j - 1] - d, pm[1][i][j - 1] - e);
+                            pm[1][i][j] = Math.max(pm[0][i][j - 1] - AffinePenalty.d, pm[1][i][j - 1] - AffinePenalty.e);
                         }
 
                         if (InsiderStrip(i - 1, j + i - k, k, diff)) {
                             // p[2] : A[j] ~ -
-                            pm[2][i][j] = Math.max(pm[0][i - 1][j + 1] - d, pm[2][i - 1][j + 1] - e);
+                            pm[2][i][j] = Math.max(pm[0][i - 1][j + 1] - AffinePenalty.d, pm[2][i - 1][j + 1] - AffinePenalty.e);
                         }
                     }
                 }

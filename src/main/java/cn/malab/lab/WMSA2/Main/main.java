@@ -1,6 +1,8 @@
 package cn.malab.lab.WMSA2.Main;
 
+import cn.malab.lab.WMSA2.hierCluster.clusterTree;
 import cn.malab.lab.WMSA2.io.Fasta;
+import cn.malab.lab.WMSA2.io.phyio;
 import cn.malab.lab.WMSA2.msa.ClusterAlign;
 import cn.malab.lab.WMSA2.msa.treeAlign;
 
@@ -11,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Main {
-    private static String mode;
+    private static String mode, treemode = "cluster";
     private static String infile;
     private static String outfile;
     private static double sim = 0.9;
@@ -35,7 +37,7 @@ public class Main {
                 labels = res[0];
                 strs = res[1];
                 // cluster模式：StarTree模式构建指导树
-                treeAlign talign = new treeAlign(strs, "cluster", false);
+                treeAlign talign = new treeAlign(strs, treemode, false);
                 // 得到比对结果
                 String[] strsTal = talign.getStrsAlign();
                 // 将比对结果写入到文件中
@@ -49,6 +51,14 @@ public class Main {
                 ClusterAlign clalign = new ClusterAlign(strs, sim, "t", "t2");
                 String[] strsClal = clalign.getStrsAlign();
                 Fasta.writeFasta(strsClal, labels, outfile, true);
+                break;
+            case "startree":
+                res = readData(sdf);
+                labels = res[0];
+                strs = res[1];
+                clusterTree cTree = new clusterTree(strs, labels);
+                System.out.println(cTree.getRootNode().toString());
+                phyio.writeNewick(outfile, cTree.getRootNode().toString());
                 break;
             default:
                 args_help();
@@ -69,17 +79,19 @@ public class Main {
         // 比对方式选择 -m
         // 输入文件位置 -i
         // 输出文件位置 -o
-        if (args.length == 0 || args.length > 8) {
+        if (args.length == 0) {
             args_help();
             System.exit(0);
         }
         for (int i = 0; i < args.length; i++) {
             if (args[i].equals("-m") && args.length > i + 1) {
-                if (args[i + 1].equalsIgnoreCase("pro") || args[i + 1].equalsIgnoreCase("win")) {
+                if (args[i + 1].equalsIgnoreCase("pro")
+                        || args[i + 1].equalsIgnoreCase("win")
+                        || args[i + 1].equalsIgnoreCase("startree")) {
                     mode = args[++i].toLowerCase();
                 } else {
                     args_help();
-                    throw new IllegalArgumentException("unknown mode: " + args[i + 1]);
+                    throw new IllegalArgumentException("unknown align mode: " + args[i + 1]);
                 }
             } else if (args[i].equals("-i") && args.length > i + 1) {
                 infile = args[++i];
@@ -87,9 +99,16 @@ public class Main {
                 outfile = args[++i];
             } else if (args[i].equals("-s") && args.length > i + 1) {
                 sim = Double.parseDouble(args[++i].trim());
+            } else if (args[i].equals("-t") && args.length > i + 1) {
+                if (args[i + 1].equalsIgnoreCase("upgma") || args[i + 1].equalsIgnoreCase("startree")) {
+                    treemode = args[++i].toLowerCase();
+                } else {
+                    args_help();
+                    throw new IllegalArgumentException("unknown tree mode: " + args[i + 1]);
+                }
             } else {
                 args_help();
-                throw new IllegalArgumentException("unknown: " + args[i]);
+                throw new IllegalArgumentException("unknown Argument: " + args[i]);
             }
         }
 
@@ -104,7 +123,8 @@ public class Main {
         }
 
         // 判断输出是否可写入
-        try (Writer ignored = new FileWriter(outfile)) {}
+        try (Writer ignored = new FileWriter(outfile)) {
+        }
 
     }
 
@@ -116,9 +136,13 @@ public class Main {
         System.out.println("    -o  Output file path");
         System.out.println();
         System.out.println("  optional arguments: ");
-        System.out.println("    -m  three align option (default mode: Pro)");
-        System.out.println("         1. Pro   progressive alignment with StarTree method");
-        System.out.println("         2. Win   combine central and progressive alignment with CluStar method");        
+        System.out.println("    -m  align option (default mode: Pro)");
+        System.out.println("         1. Pro        progressive alignment with StarTree method");
+        System.out.println("         2. Win        combine central and progressive alignment with CluStar method");
+        System.out.println("         3. StarTree   only output the guidetree");
+        System.out.println("    -t  tow method for guide tree (default: StarTree)");
+        System.out.println("         1. StarTree");
+        System.out.println("         2. UPGMA");
         System.out.println("    -s  the similarity of the cluster (used in Win mode. default: 0.9)");
         System.out.println();
     }
@@ -135,4 +159,3 @@ public class Main {
         System.out.println();
     }
 }
-

@@ -130,11 +130,11 @@ public class multiKband extends kb {
         int results = 0, len = tempA.length;
         for (int i = 0; i < len - 2; i++)
             results += (tempA[i] * tempB[i]);
-        results *= (this.ms - this.mis);
-        results += (numA - tempA[len - 1] - tempA[len - 2]) * (numB - tempB[len - 1] - tempB[len - 2]) * this.mis;
-        results += (numA - tempA[len - 2]) * (tempB[len - 1] * this.ms - tempB[len - 2] * 3);
+        results *= (AffinePenalty.ms - AffinePenalty.mis);
+        results += (numA - tempA[len - 1] - tempA[len - 2]) * (numB - tempB[len - 1] - tempB[len - 2]) * AffinePenalty.mis;
+        results += (numA - tempA[len - 2]) * (tempB[len - 1] * AffinePenalty.ms - tempB[len - 2] * 3);
         results -= tempA[len - 2] * (numB - tempB[len - 2]) * 3;
-        results += tempA[len - 1] * (numB - tempB[len - 1] - tempB[len - 2]) * this.ms;
+        results += tempA[len - 1] * (numB - tempB[len - 1] - tempB[len - 2]) * AffinePenalty.ms;
         return results / (numA * numB);
     }
 
@@ -150,9 +150,9 @@ public class multiKband extends kb {
         while (i > 0 || j > k) {
             if (channel == 1 && j > 0) {
                 channel = -1;
-                if (pm[1][i][j] == pm[1][i][j - 1] - e) {
+                if (pm[1][i][j] == pm[1][i][j - 1] - AffinePenalty.e) {
                     channel = 1;
-                } else if (i >= 1 && pm[1][i][j] == pm[0][i][j - 1] - d) {
+                } else if (i >= 1 && pm[1][i][j] == pm[0][i][j - 1] - AffinePenalty.d) {
                     channel = 0;
                 }
                 trace.add(1);
@@ -173,9 +173,9 @@ public class multiKband extends kb {
                 bj--;
             } else if (channel == 2 && i > 0 && (j + 1) <= (2 * k + diff)) {
                 channel = -1;
-                if (pm[2][i][j] == pm[2][i - 1][j + 1] - e) {
+                if (pm[2][i][j] == pm[2][i - 1][j + 1] - AffinePenalty.e) {
                     channel = 2;
-                } else if (i > 1 && pm[2][i][j] == pm[0][i - 1][j + 1] - d) {
+                } else if (i > 1 && pm[2][i][j] == pm[0][i - 1][j + 1] - AffinePenalty.d) {
                     channel = 0;
                 }
                 trace.add(2);
@@ -265,12 +265,12 @@ public class multiKband extends kb {
 
                         if (InsiderStrip(i, j + i - k - 1, k, diff)) {
                             // p[1] : B[j] ~ -
-                            pm[1][i][j] = Math.max(pm[0][i][j - 1] - d, pm[1][i][j - 1] - e);
+                            pm[1][i][j] = Math.max(pm[0][i][j - 1] - AffinePenalty.d, pm[1][i][j - 1] - AffinePenalty.e);
                         }
 
                         if (InsiderStrip(i - 1, j + i - k, k, diff)) {
                             // p[2] : A[j] ~ -
-                            pm[2][i][j] = Math.max(pm[0][i - 1][j + 1] - d, pm[2][i - 1][j + 1] - e);
+                            pm[2][i][j] = Math.max(pm[0][i - 1][j + 1] - AffinePenalty.d, pm[2][i - 1][j + 1] - AffinePenalty.e);
                         }
                     }
                 }

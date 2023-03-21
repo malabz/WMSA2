@@ -9,8 +9,8 @@ import java.util.List;
 
 public class multiDP {
 
-    private final int ms = 7, mis = -3;
-    private final int d = 15, e = 2;
+    // private final int ms = 7, mis = -3;
+    // private final int d = 15, e = 2;
     private final String[] A, B;
     private String[] alignA, alignB;
     private final int numA, numB;
@@ -105,11 +105,11 @@ public class multiDP {
         int results = 0, len = tempA.length;
         for (int i = 0; i < len - 2; i++)
             results += (tempA[i] * tempB[i]);
-        results *= (this.ms - this.mis);
-        results += (numA - tempA[len - 1] - tempA[len - 2]) * (numB - tempB[len - 1] - tempB[len - 2]) * this.mis;
-        results += (numA - tempA[len - 2]) * (tempB[len - 1] * this.ms - tempB[len - 2] * this.e);
-        results -= tempA[len - 2] * (numB - tempB[len - 2]) * this.e;
-        results += tempA[len - 1] * (numB - tempB[len - 1] - tempB[len - 2]) * this.ms;
+        results *= (AffinePenalty.ms - AffinePenalty.mis);
+        results += (numA - tempA[len - 1] - tempA[len - 2]) * (numB - tempB[len - 1] - tempB[len - 2]) * AffinePenalty.mis;
+        results += (numA - tempA[len - 2]) * (tempB[len - 1] * AffinePenalty.ms - tempB[len - 2] * AffinePenalty.e);
+        results -= tempA[len - 2] * (numB - tempB[len - 2]) * AffinePenalty.e;
+        results += tempA[len - 1] * (numB - tempB[len - 1] - tempB[len - 2]) * AffinePenalty.ms;
         return results / (numA * numB);
     }
 
@@ -122,10 +122,10 @@ public class multiDP {
         }
         p[0][0][0] = 0;
         for (int j = 1; j < n + 1; j++) {
-            p[1][0][j] = -e * j;
+            p[1][0][j] = -AffinePenalty.e * j;
         }
         for (int i = 1; i < m + 1; i++) {
-            p[2][i][0] = -e * i;
+            p[2][i][0] = -AffinePenalty.e * i;
         }
         return p;
     }
@@ -157,9 +157,9 @@ public class multiDP {
                 // p[0] : A[i] ~ B[j]
                 p[0][i][j] = Max3(p[0][i - 1][j - 1], p[1][i - 1][j - 1], p[2][i - 1][j - 1]) + Match(i - 1, j - 1);
                 // p[1] : B[j] ~ -
-                p[1][i][j] = Math.max(p[0][i][j - 1] - d, p[1][i][j - 1] - e);
+                p[1][i][j] = Math.max(p[0][i][j - 1] - AffinePenalty.d, p[1][i][j - 1] - AffinePenalty.e);
                 // p[2] : A[j] ~ -
-                p[2][i][j] = Math.max(p[0][i - 1][j] - d, p[2][i - 1][j] - e);
+                p[2][i][j] = Math.max(p[0][i - 1][j] - AffinePenalty.d, p[2][i - 1][j] - AffinePenalty.e);
             }
         }
         TraceBack(p, m, n);
@@ -173,9 +173,9 @@ public class multiDP {
         while (i > 0 || j > 0) {
             if (channel == 1 && j > 0) {
                 channel = -1;
-                if (p[1][i][j] == p[1][i][j - 1] - e)
+                if (p[1][i][j] == p[1][i][j - 1] - AffinePenalty.e)
                     channel = 1;
-                else if (i > 0 && j > 1 && p[1][i][j] == p[0][i][j - 1] - d)
+                else if (i > 0 && j > 1 && p[1][i][j] == p[0][i][j - 1] - AffinePenalty.d)
                     channel = 0;
                 trace.add(1);
                 j--;
@@ -193,9 +193,9 @@ public class multiDP {
                 j--;
             } else if (channel == 2 && i > 0) {
                 channel = -1;
-                if (p[2][i][j] == p[2][i - 1][j] - e)
+                if (p[2][i][j] == p[2][i - 1][j] - AffinePenalty.e)
                     channel = 2;
-                else if (i > 1 && j > 0 && p[2][i][j] == p[0][i - 1][j] - d)
+                else if (i > 1 && j > 0 && p[2][i][j] == p[0][i - 1][j] - AffinePenalty.d)
                     channel = 0;
                 trace.add(2);
                 i--;

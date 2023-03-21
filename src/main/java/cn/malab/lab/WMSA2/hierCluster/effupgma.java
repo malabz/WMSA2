@@ -11,12 +11,17 @@ public class effupgma {
     private final node[] nodes;
     private final int[] nums;
     private final int len;
+    private node rootNode;
     private int remainder;
     private int global_n;
     private double headValue, secondValue;
     
-    public List<int[]> TreeList;
-    
+    private List<int[]> TreeList;
+
+    public List<int[]> getTreeList() {
+        return TreeList;
+    }
+
     public effupgma(double[][] matrix) {
         this.dmatrix = matrix;
         this.len = matrix.length;
@@ -49,6 +54,34 @@ public class effupgma {
         }
 
         this.genTree();
+    }
+
+    /**
+     * 输出指导树用
+     * @param matrix
+     * @param names
+     * @param idxs
+     * @param global_n
+     */
+    public effupgma(double[][] matrix, String[] names, int[] idxs, int global_n) {
+        this.dmatrix = matrix;
+        this.len = matrix.length;
+        this.remainder = this.len;
+        this.global_n = global_n;
+        this.nums = new int[this.len];
+        this.nodes = new node[this.len];
+        this.TreeList = new ArrayList<>();
+
+        for (int i = 0; i < len; i++) {
+            this.nums[i] = 1;
+            this.nodes[i] = new leafnode(names[i], i, idxs[i]);
+        }
+
+        this.genTree();
+    }
+
+    public node getRootNode() {
+        return rootNode;
     }
 
     private void genTree() {
@@ -88,6 +121,7 @@ public class effupgma {
         n2.setLen(min / 2 - n2.getDistance());        
         nodes[i1] = new midnode(n1, n2, i1, global_n);
         nodes[i2] = null;
+        this.rootNode = nodes[i1];
         // 更新list
         TreeList.add(new int[] {n1.getNum(), n2.getNum(), global_n++});
         // 更新距离

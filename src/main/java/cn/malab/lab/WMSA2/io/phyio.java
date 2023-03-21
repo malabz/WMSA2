@@ -1,7 +1,11 @@
 package cn.malab.lab.WMSA2.io;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -75,5 +79,11 @@ public class phyio {
             }
         }
         return treeList;
+    }
+
+    public static void writeNewick(String path, String tree) throws IOException {
+        try (Writer write = new FileWriter(path); BufferedWriter bw = new BufferedWriter(write)) {
+            bw.write(tree + "\n");
+        }
     }
 }

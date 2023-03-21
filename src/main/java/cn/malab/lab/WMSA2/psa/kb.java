@@ -7,9 +7,6 @@ import java.util.Arrays;
  */
 public abstract class kb {
 
-    protected final int ms = 7, mis = -3;
-    protected final int d = 15, e = 2;
-
     /**
      * judge the idx whether in the matrix
      * 
@@ -30,10 +27,10 @@ public abstract class kb {
         }
         pm[0][0][k] = 0;
         for (int j = 1; j < k + 1 + diff; ++j) {
-            pm[1][0][j + k] = -this.d - this.e * (j - 1);
+            pm[1][0][j + k] = -AffinePenalty.d - AffinePenalty.e * (j - 1);
         }
         for (int i = 1; i < k + 1; ++i) {
-            pm[2][i][k - i] = -this.d - this.e * (i - 1);
+            pm[2][i][k - i] = -AffinePenalty.d - AffinePenalty.e * (i - 1);
         }
     }
 

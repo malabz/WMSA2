@@ -9,8 +9,6 @@ import java.util.Arrays;
  */
 public class DP {
 
-    private final int ms = 7, mis = -3;
-    private final int d = 15, e = 2;
     private final String A, B;
     private String alignA = "", alignB = "";
     private boolean state = false;
@@ -41,7 +39,7 @@ public class DP {
     }
 
     private int Match(char a, char b) {
-        return a == b ? this.ms : this.mis;
+        return a == b ? AffinePenalty.ms : AffinePenalty.mis;
     }
 
     private void TraceBack(float[][][] p, int m, int n) {
@@ -53,9 +51,9 @@ public class DP {
         while (i > 0 || j > 0) {
             if (channel == 1 && j > 0) {
                 channel = -1;
-                if (p[1][i][j] == p[1][i][j - 1] - e)
+                if (p[1][i][j] == p[1][i][j - 1] - AffinePenalty.e)
                     channel = 1;
-                else if (i > 0 && j > 1 && p[1][i][j] == p[0][i][j - 1] - d)
+                else if (i > 0 && j > 1 && p[1][i][j] == p[0][i][j - 1] - AffinePenalty.d)
                     channel = 0;
                 alA.insert(0, "-");
                 alB.insert(0, B.charAt(j - 1));
@@ -75,9 +73,9 @@ public class DP {
                 j--;
             } else if (channel == 2 && i > 0) {
                 channel = -1;
-                if (p[2][i][j] == p[2][i - 1][j] - e)
+                if (p[2][i][j] == p[2][i - 1][j] - AffinePenalty.e)
                     channel = 2;
-                else if (i > 1 && j > 0 && p[2][i][j] == p[0][i - 1][j] - d)
+                else if (i > 1 && j > 0 && p[2][i][j] == p[0][i - 1][j] - AffinePenalty.d)
                     channel = 0;
                 alA.insert(0, A.charAt(i - 1));
                 alB.insert(0, "-");
@@ -103,10 +101,10 @@ public class DP {
         }
         p[0][0][0] = 0;
         for (int j = 1; j < n + 1; j++) {
-            p[1][0][j] = -e * j;
+            p[1][0][j] = -AffinePenalty.e * j;
         }
         for (int i = 1; i < m + 1; i++) {
-            p[2][i][0] = -e * i;
+            p[2][i][0] = -AffinePenalty.e * i;
         }
         return p;
     }
@@ -138,9 +136,9 @@ public class DP {
                 p[0][i][j] = Max3(p[0][i - 1][j - 1], p[1][i - 1][j - 1], p[2][i - 1][j - 1])
                         + Match(A.charAt(i - 1), B.charAt(j - 1));
                 // p[1] : B[j] ~ -
-                p[1][i][j] = Math.max(p[0][i][j - 1] - d, p[1][i][j - 1] - e);
+                p[1][i][j] = Math.max(p[0][i][j - 1] - AffinePenalty.d, p[1][i][j - 1] - AffinePenalty.e);
                 // p[2] : A[j] ~ -
-                p[2][i][j] = Math.max(p[0][i - 1][j] - d, p[2][i - 1][j] - e);
+                p[2][i][j] = Math.max(p[0][i - 1][j] - AffinePenalty.d, p[2][i - 1][j] - AffinePenalty.e);
             }
         }
         TraceBack(p, m, n);
