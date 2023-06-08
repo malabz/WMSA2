@@ -120,7 +120,7 @@ Download:
 
 If you use this software, please cite:
 
-WMSA 2: A win-win multiple sequence alignment method combining central and progressive alignment strategies for the fast alignment of big data sets(under review).
+Chen J, Chao J, Liu H, Yang F, Zou Q, Tang F. WMSA 2: a multiple DNA/RNA sequence alignment tool implemented with accurate progressive mode and a fast win-win mode combining the center star and progressive strategies. Brief Bioinform. 2023 May 17:bbad190. doi: 10.1093/bib/bbad190. Epub ahead of print. PMID: 37200156.
 
 ### Contact us
 
