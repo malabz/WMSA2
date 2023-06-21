@@ -71,7 +71,7 @@ public class Fasta {
                 }
             }
             if (tempn > 0) {
-                strs[i] = strs[i].replaceAll("[-]", "");
+                strs[i] = strs[i].replaceAll("[-\\s]", "");
                 strs[i] = strs[i].replaceAll("[^AGCTUNagctun]", "n");
                 gap += map.get('-');
                 map.put('-', 0);
